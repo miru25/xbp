@@ -27,33 +27,57 @@ html, body {
 	color: #393939;
     margin-left: 15px;
     margin-bottom: 40px;
+
 	background: #efefef;
+        background-color: #FFF;
+        background-image: linear-gradient( transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient( 90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06) );
+        background-size: 16px 16px;
+        background-repeat: repeat;
+        width:100%;
+        height:10vw;
+    
 }
+
+
 h1{
     text-indent: 0em;
+    color: #393939;
 }
 h2{
     margin-left: 1em;
     margin-top: 1em;
+    color: #393939;
 }
 h3{
     margin-left: 2em;
+    color: #393939;
 }
 div{
     margin-top: 1em;
     margin-left: 3em;
+
 }
 p{
     margin-left: 3em;
+    color: #393939;
 }
 span.blackback{
     text-indent: 3em;
     background: #393939;
     color: #efefef;
 }
-/* 小さめの水玉 */
-.mizutama-minidot {
-    background-image: radial-gradient(currentColor 1px, transparent 1px);
-        background-size: calc(10 * 1px) calc(10 * 1px);
-        color: #c8e4ff !important;
-    }
+table {
+    border-collapse: collapse;
+    text-align: center;
+  }
+  th, td {
+    padding: 5px 15px;
+    border: solid 1px #333;
+  }
+  th{
+    color: #333; 
+  background-color: #f0f2f7;
+  }
+  caption{
+    font-weight: bold;
+  }
