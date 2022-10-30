@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <!-- ⑥↓タイトルを変えてみよう -->
+    <title>ミルデザイン演習第四回</title>
+    <!-- ⑤スタイルシートの設定をしよう -->
+    <link rel="stylesheet"href="./css/style2.css">
+    <div class="bg_pattern Paper_v2"></div>
+    <!-- h1.htmlからある行をコピペしてくればOK -->
+</head>
+<body>
+    <h1>第四回</h1>
+    <div>
+        <div>
+            <h2>ゲーム作成</h2>
+            <p>
+                二班が考えたゲームは、上限の数字を超えないように足し算を続けていくゲーム。<br>
+                足される数字はコンピュータがランダムで選ぶので、超えるか超えないかは運次第！<br>
+                上限の数字とぴったり揃った場合は、ゲームクリア！<br>
+                上限以下で足すのを止めた場合は、その時点での数字がハイスコアとなります。<br>
+                ぴったり揃うと信じて足し続けるのか、上限を超えないよう確実にハイスコアを狙っていくのか、<br>
+                あなたのチャレンジ精神と運が試されます！<br>
+            </p>
+        </div>
+        <div>
+            <p>
+                <code>
+                    <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+                    <li style="background-color:#EFF;">import random</li>
+                    <li style="background-color:#EEF;">from re import I</li>
+                    <li style="background-color:#EFF;">from tkinter import Y</li>
+                    <li style="background-color:#EEF;"></li>
+                    <li style="background-color:#EFF;"></li>
+                    <li style="background-color:#EEF;">counter=0   #最初の数字は0</li>
+                    <li style="background-color:#EFF;"></li>
+                    <li style="background-color:#EEF;">print("99を超えないように限界まで挑戦してください。")</li>
+                    <li style="background-color:#EFF;">print("現在の数字は0です。")</li>
+                    <li style="background-color:#EEF;"></li>
+                    <li style="background-color:#EFF;">while counter&lt;=99:               #上限の99を超えるまで同じ流れが繰り返される</li>
+                    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;a = random.randint(1,30)           #ランダムで足される数字の幅が1~30</li>
+                    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;question=input("まだ足しますか。")</li>
+                    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;if question=="yes":</li>
+                    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;counter=counter+a       #ランダムに数字が足される</li>
+                    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("現在の合計は",counter,"です。")      #合計が表示される</li>
+                    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif counter==99:       #合計が99ぴったりだと以下の文が表示され、繰り返しから抜ける</li>
+                    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("おめでとうございます。99ぴったりです。")</li>
+                    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break</li>
+                    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;elif question=="no":        #noと入力されるとハイスコアが表示され、繰り返しから抜ける</li>
+                    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("ハイスコアは",counter,"です。")</li>
+                    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break</li>
+                    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li style="background-color:#EFF;"></li>
+                    <li style="background-color:#EEF;">else:       #合計が99を超えると以下の文が表示される</li>
+                    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print("99を超えました。失敗です。")</li>
+                    </ol>
+                </code>
+            </p>
+        </div>
+        <div>
+            <p>
+                スタートの数字は０で、上限の数字を超えるまでは「まだ足しますか。」という質問が出ます。<br>
+                "yes"と答えた場合はランダムで数字が足され、上限を超えていなければ「現在の合計」が示された後また同じ質問が続きます。<br>
+                もし上限を超えてしまっていたらそこで失敗となります。<br>
+                "no"と答えた場合は数字は足されず、その時点での合計がハイスコアとなります。<br>
+            </p>
+        </div>
+        <div>
+            <h2>ゲームのプレイ結果</h2>
+            <p>
+                <ol>
+                    <h3><li>上限を超えたとき</li></h3>
+                    <img src="./images/gamemiss.png" width="30%"><br>
+                    <h3><li>noを入力したとき</li></h3>
+                    <img src="./images/gameno.png" width="30%"><br>
+                </ol>
+                ちなみに99ぴったりも稀にでます!<br>
+                <img src="./images/game99.png" width="30%"><br>
+            </p>
+        </div>
+        <div>
+            <p>
+                <h2>補足</h2>
+                上限の数字が99で、ランダムで足される数字の幅が1~30なことに深い理由はありません。<br>
+                各々好きな数字に変更しても大丈夫です。<br>
+            </p>
+        </div>
+        <div>
+            <h2>参考サイト</h2>
+            <a href="https://www.headboost.jp/python-while-break/">While文のBreakを使ったループの中断</a><br>
+            <a href="https://www.javadrive.jp/python/for/index6.html">Break文を使った繰り返し処理の強制終了</a>
+        </div>
+        <br>
+        <div>
+            <p>
+                <a href="./index.html" class="btn-circle-border-simple">デザイン演習TOP</a>
+                <a href="../index.html" class="btn-circle-border-simple">XBPTOP</a><br>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -38,11 +38,11 @@ html, body {
     
 }
 
-
-h1{
-    text-indent: 0em;
-    color: #393939;
+.btn--orange,
+h1 {
+  border-bottom: 3px solid #000;
 }
+
 h2{
     margin-left: 1em;
     margin-top: 1em;
