@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    
+    <title>ミルの第5回デザイン演習</title>
+    
+    <link rel="stylesheet"href="./css/style2.css">
+    <div class="bg_pattern Paper_v2"></div>
+    
+</head>
+<body>
+    <h1>第５回</h1>
+    
+    <div>
+        <div>
+            私たちのグループは、一部の歌詞を入力すると<br>
+            該当する曲の「曲名」や「歌詞」が表示される仕組みを作ることはできないかと考えました。<br>
+            そのためにまず、歌詞検索サイトのリンクからPython上で歌詞を表示させる仕組みを<br>
+            「スクレイピング」で実現させる方法を試しました。<br>
+            参考サイトを基にbeautiful soupというライブラリをインポートしスクレイピングを行いました。<br>
+            <br>
+            サイトをコピペしたコードが以下のようになります。<br>
+            <code>
+                <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+                <li style="background-color:#EFF;">import requests</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">from bs4 import BeautifulSoup</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">print("歌手名入力")</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">band = input()</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">print("歌名入力")</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">song = input()</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">def main():</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# URL の指定</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;url = "https://utaten.com/lyric/" +str(band) + "/"+str(song)</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# ページの取得</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;html = requests.get(url).text</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# HTML の保存</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;with open("config.html", mode="w", encoding="utf-8") as file:</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.write(html)</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;soup = BeautifulSoup(html, "html.parser")</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;article = soup.find("article", class_="contentsBox movie_box")</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# タイトルの取得</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;span = article.find("span", class_="movieTtl_mainTxt")</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;title = span.text[1:-1]</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# 作者の取得</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;dl = soup.find("dl", class_="lyricWork")</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;dds = dl.find_all("dd")</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;lyricist = dds[0].text</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;composer = dds[1].text</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# 歌詞の取得</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;div = soup.find("div", class_="hiragana")</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;div.find("span", class_="rt").extract()</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print(title)</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;#print(lyricist, composer)</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print(div.get_text())</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;#書き込み用ファイルの生成</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;path_w = "kashi.txt"</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;s = div.get_text()</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;with open(path_w, mode='a') as f:</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(s)</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">if __name__ == '__main__':</li>
+                <li style="background-color:#EEF;"></li>
+                <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;main()</li>
+                </ol></code>
+
+        </div>
+        <div>
+            サイト通りに実行してみると、「歌手名」と「歌名」を入力した段階でエラーが発生してしまいました。<br>
+            その後、道用先生の助けを借りて、参考サイトと現在のうたてん(歌詞検索サイト)のタグが異なっていることが判明しました。<br>
+            この部分↓<br>
+            <img src="./images/taguhen.png" width="30%"><br>
+            そのため、曲名や作曲者、歌詞を囲んでいるタグの中身を、HTMLのソースコードから探し出し、<br>
+            それっぽいものをひとつずつ打ち込んでいけば成功するかもしれないとアドバイスをいただきました。<br>
+            ↓この辺から該当しそうなタグを探す<br>
+            <img src="./images/sosu.png" width="30%">
+            <img src="./images/kasi.png" width="30%"><br>
+            <br>
+            そして実践してみた結果<br>
+            <br>
+            <br>
+            最終的に歌詞を表示させることはできませんでした。<br>
+            しかし、課題を通してスクレイピングとは何か、スクレイピングをするために使うライブラリとは何かなど<br>
+            様々なことを学ぶことができました。<br>
+            また、今回は課題提出の時間までに間に合わず完成させることができなかったのですが、<br>
+            他のサイトを参考にしてみたり、タグを片っ端から入れてみたりすれば完成させられるかもしれないので<br>
+            時間があるときにやってみようと思います。<br>
+
+
+        </div>
+        <div>
+            <a href="https://ligerarts.jimdofree.com/2020/08/30/python-%E6%AD%8C%E8%A9%9E%E3%82%92%E6%A4%9C%E7%B4%A2%E3%81%97%E3%82%88%E3%81%86/">参考サイト</a><br>
+            <a href="https://data.wingarc.com/scraping-27053">スクレイピングとは</a><br>
+        </div>
+        
+        <div>
+            <a href="./index.html" class="btn-circle-border-simple">デザイン演習TOP</a>
+            <a href="../index.html" class="btn-circle-border-simple">XBPTOP</a><br>
+        </div>
+    </div>
+
+</body>
+</html>
