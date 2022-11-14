@@ -139,4 +139,15 @@ table {
   .btn-circle-border-simple:hover {
     background: #efefef;
   }
-  
+    
+.underline01 {
+  background: #eeff00;
+}
+
+.underline02 {
+  background: linear-gradient(transparent 40%, #f5ff00 60%);
+}
+
+.underline03 {
+  background: linear-gradient(transparent 80%, #f5ff00 20%);
+}
