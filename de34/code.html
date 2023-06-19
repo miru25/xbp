@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <!-- ⑥↓タイトルを変えてみよう -->
+    <title>ミルのデザイン演習Ⅲ・Ⅳ</title>
+    <!-- ⑤スタイルシートの設定をしよう -->
+    <link rel="stylesheet"href="./css/style2.css">
+    <div class="bg_pattern Polka"></div>
+    <!-- h1.htmlからある行をコピペしてくればOK -->
+</head>
+<body>
+    <h2>ソースコード</h2>
+    <pre>
+        <code>
+            //３つの要素→QRコード動かす、アニメーション、光センサーと繋げる
+
+import processing.serial.*;
+import java.awt.*;
+import javax.swing.*;
+
+//QRコードを動かす
+int x = 0;
+int y = 0;
+int dir_x = 1;
+int dir_y = 1;
+int speed = 3;
+
+
+Serial port;
+int lightThreshold = 80;
+boolean imageVisible = false;
+PImage image;
+
+//アニメーション
+Kirakira[] kira = new Kirakira[250];
+
+void setup() {
+  size(1000, 600);
+  
+  frameRate( 30 );
+  
+  colorMode(HSB, 360, 100, 100);
+  background(360);
+  smooth();
+
+  strokeWeight(3);
+//アニメーション
+   for (int i = 0; i < kira.length; i++) {
+    kira[i] = new Kirakira();
+  }
+
+  // Arduinoとのシリアル通信の設定
+  port = new Serial(this, "COM4", 9600);
+  port.bufferUntil('\n');
+
+  // QRコード画像の読み込み
+  image = loadImage("QR.png");
+}
+
+void draw() {
+  background(360);
+
+    //光センサー
+  if (port.available() > 0) {
+    String lightValueString = port.readStringUntil('\n');
+    if (lightValueString != null) {
+      lightValueString = trim(lightValueString);
+      int lightValue = int(lightValueString);
+
+      if (lightValue <= lightThreshold) {
+        // 光センサの値が閾値以下の場合、画像を表示
+        imageVisible = true;
+      } else {
+        // 光センサの値が閾値より大きい場合、画像を非表示
+        imageVisible = false;
+      }
+    }
+  }
+
+  if (imageVisible) {
+    // 画像が表示状態の場合、画像を表示
+    //imageMode(CENTER);
+    //image(image, width / 2, height / 2);
+    
+
+    //QRコードの移動
+    x += dir_x * speed;
+  y += dir_y * speed;
+
+  if ( ( x < 0 ) || ( x > width - image.width ) ) {
+    dir_x = - dir_x;
+  }
+
+  if ( ( y < 0 ) || ( y > height - image.height ) ) {
+    dir_y = - dir_y;
+  }
+
+  image( image, x, y );
+
+
+  //アニメーション
+    for (int i = 0; i < kira.length; i++) {
+      kira[i].display();
+      kira[i].move();
+    }
+  }
+}
+
+class Kirakira {
+  float delta = TWO_PI / 100;
+
+  float x = random(width);
+  float y = random(height);
+  float hue_fill = random(180,250);
+  float hue_stroke = random(180,250);
+
+
+  float R;
+  float R_start = random(10, 30);
+  float R_height = random(1.2, 1.6);
+  float R_theta = random(TWO_PI);
+  float R_theta_delta = random(0.03, 0.08);
+
+  float y_spd = random(1, 3);
+
+  Kirakira() {
+  }
+
+  void display() {
+    fill(hue_fill, 50, 100, 80);
+    stroke(hue_stroke, 100, 100, 80);
+    pushMatrix();
+    translate(x, y);
+    beginShape();
+    for (float t = 0; t < TWO_PI; t += delta) {
+      vertex(R* pow(cos(t), 3), R * R_height * pow(sin(t), 3));
+    }
+    endShape(CLOSE);
+    popMatrix();
+
+    R = R_start * abs(sin(R_theta)) ;
+
+    R_theta += R_theta_delta;
+  }
+
+  void move() {
+    y -= y_spd;
+
+    if (y < -R * R_height) {
+      y = height + R * R_height;
+    }
+  }
+}
+
+
+
+        </code>
+    </pre>
+</body>
+</html>
