@@ -36,20 +36,22 @@
         →はやったこと<br>
         <br>
         <br>
+        <br>
         ■光センサーの値が変わることで映像を流す方法、出来れば何種類か流したい<br>
-        ●まずは光センサーが反応したら動画が再生される方法を調べる<br>
-        →Processingを使えばできそう<br>
-        <a href="https://teratail.com/questions/305467">参考サイト</a><br>
+        　●まずは光センサーが反応したら動画が再生される方法を調べる<br>
+        　→Processingを使えばできそう<br>
+        　<a href="https://teratail.com/questions/305467">参考サイト</a><br>
         ■参考にしたソースコードを光センサーでできるように自分たちなりに変えてみたけれどできない<br>
-        →先生に相談<br>
-        <a href="https://fabble.cc/fablabminatomirai/arduino-processing">ArduinoとProcessing</a>を繋げる方法を教わる<br>
+        　→先生に相談<br>
+        　<a href="https://fabble.cc/fablabminatomirai/arduino-processing">ArduinoとProcessing</a>を繋げる方法を教わる<br>
+        <br>
         <br>
         <br>
         ■光センサーの値によって異なる魔法の映像を流す<br>
-        ●明るさの違うライトを用意（デジファブ使用）して、センサーの値を変える<br>
-        ●まずは一種類（氷魔法？）だけやってみる<br>
-        →グループで役割分担、Processingでアニメーションを動かす（簡単なものから試す）<br>
-        →<a href="http://blog.livedoor.jp/reona396/archives/55010192.html">参考サイト</a>をもとに色を寒色系に変えて氷魔法っぽくする<br>
+        　●明るさの違うライトを用意（デジファブ使用）して、センサーの値を変える<br>
+        　●まずは一種類（氷魔法？）だけやってみる<br>
+        　→グループで役割分担、Processingでアニメーションを動かす（簡単なものから試す）<br>
+        　→<a href="http://blog.livedoor.jp/reona396/archives/55010192.html">参考サイト</a>をもとに色を寒色系に変えて氷魔法っぽくする<br>
         <br>
         　　HSBはHue（色相）、Saturation（彩度）、Brightness（明度）<br>
         　　<img src="./images/hsb.png" width="25%"><br>
@@ -60,28 +62,41 @@
         　　<img src="./images/hyouji.png" width="40%"><br>
         　　氷魔法っぽさが少し出てきた<br>
         <br>
-        ●光センサーの反応によってアニメーションとQRコードを表示させる<br>
-        →<a href="./code.html">ソースコード</a><br>
+        <br>
+        　●光センサーの反応によってアニメーションとQRコードを表示させる<br>
+        　→<a href="./code.html">ソースコード</a><br>
         　<img src="" width="40%"><br>
         <br>
         <br>
-        ●配線を長くする(スクリーンに近い場所にセンサーを置けるように)<br>
-        →はんだでコードを延長<br>
-        <img src="./images/handa.png" width="30%"><br>
         <br>
-        ●雪だるまとQRコードを作成＆接続<br>
-        →雪だるま１号完成<br>
-        <img src="./images/snowman.png" width="30%"><br>
-        ●空洞が上手く作れず改良が必要<br>
-        →<br>
+        ■雪だるま＆QRコード・杖作成、動画作成のために見栄えを良くしたい、音は出せるか<br>
+        　●配線を長くする(スクリーンに近い場所にセンサーを置けるように)<br>
+        　→はんだでコードを延長<br>
+        　<img src="./images/handa.png" width="30%"><br>
         <br>
-        ●画面表示と同時に魔法っぽい音を流す<br>
-        →既存のソースコードに音を流す要素を追加する<br>
-        実行直後の一回しか音が流れない<br>
-        ●実行し直さなくても音が流れるようにしたい<br>
         <br>
-        ●杖を完成させる<br>
-        ●センサーを隠すものを作る<br>
+        　●雪だるまとQRコードを作成＆接続<br>
+        　→雪だるま１号完成<br>
+        　<img src="./images/snowman.png" width="30%"><br>
+        <br>
+        　●空洞が上手く作れず光が通らないため改良が必要<br>
+        　→雪だるま２号完成<br>
+        <br>
+        　<img src="./images/snowman2.png" width="30%">
+        　<img src="./images/snowman2.5.png" width="30%"><br>
+        <br>
+        <br>
+        　●画面表示と同時に魔法っぽい音を流す<br>
+        　→既存のソースコードに音を流す要素を追加する<br>
+        　■実行直後の一回しか音が流れない<br>
+        　●実行し直さなくても音が流れるようにしたい<br>
+        　→真偽を確かめるbooleanを使って、実行し直さなくても光を当てる度に音が一回流れるようにする<br>
+        　<a href="./code2.html">ソースコード(完成版)</a><br>
+        <br>
+        　●杖を完成させる<br>
+        　→3Dプリンターで作成、アクリル絵の具で色付け<br>
+        　<img src="./images/tue.png" width="30%"><br>
+        　
         <br>
         
         <br>
@@ -90,15 +105,22 @@
     </div>
     <div>
         <h2>使用したモノ</h2><br>
-        <br>
-        <br>
-        <br>
+        <ul>
+            <li>Arduino</li>
+            <li>Processing</li>
+            <li>マイコンボード</li>
+            <li>LED</li>
+            <li>光センサー</li>
+            <li>3Dプリンター</li>
+            <li>半田</li>
+        </ul>
         <br>
     </div>
     <div>
         <h2>紹介動画</h2><br>
         <br>
         <br>
+        　<iframe width="560" height="315" src="https://www.youtube.com/embed/YrwOtoNAnqk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         <br>
         <br>
     </div>

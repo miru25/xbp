@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <!-- ⑥↓タイトルを変えてみよう -->
+    <title>ミルのデザイン演習Ⅲ・Ⅳ</title>
+    <!-- ⑤スタイルシートの設定をしよう -->
+    <link rel="stylesheet"href="./css/style.css">
+    
+    <!-- h1.htmlからある行をコピペしてくればOK -->
+</head>
+<body>
+   
+    <code>
+        <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+        <li style="background-color:#EFF;">// 画像の表示非表示のコード</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">import processing.serial.*;</li>
+        <li style="background-color:#EEF;">import java.awt.*;</li>
+        <li style="background-color:#EFF;">import javax.swing.*;</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">//↓音を出すminim class</li>
+        <li style="background-color:#EEF;">import ddf.minim.*;</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">Minim minim;</li>
+        <li style="background-color:#EFF;">//AudioSample sound;</li>
+        <li style="background-color:#EEF;">AudioPlayer player;</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">int x = 0;</li>
+        <li style="background-color:#EEF;">int y = 0;</li>
+        <li style="background-color:#EFF;">int dir_x = 1;</li>
+        <li style="background-color:#EEF;">int dir_y = 1;</li>
+        <li style="background-color:#EFF;">int speed = 3;</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">Serial port;</li>
+        <li style="background-color:#EEF;">int lightThreshold = 80;</li>
+        <li style="background-color:#EFF;">boolean imageVisible = false;</li>
+        <li style="background-color:#EEF;">boolean sound_flag=false;</li>
+        <li style="background-color:#EFF;">PImage image;</li>
+        <li style="background-color:#EEF;">Kirakira[] kira = new Kirakira[250];</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">void setup() {</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;size(1000, 600);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;frameRate( 30 );</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;colorMode(HSB, 360, 100, 100);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;background(360);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;smooth();</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;strokeWeight(3);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;for (int i = 0; i &lt; kira.length; i++) {</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;kira[i] = new Kirakira();</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;}</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;// Arduinoとのシリアル通信の設定</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;port = new Serial(this, "COM4", 9600);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;port.bufferUntil('\n');</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;// 画像の読み込み</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;image = loadImage("dflink.qr.png");</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;//音</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;minim = new Minim(this);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;player = minim.loadFile("sound.mp3");</li>
+        <li style="background-color:#EFF;">}</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">void draw() {</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;background(360);</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;if (port.available() &gt; 0) {</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;String lightValueString = port.readStringUntil('\n');</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;if (lightValueString != null) {</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lightValueString = trim(lightValueString);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int lightValue = int(lightValueString);</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (lightValue &lt;= lightThreshold) {</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 光センサの値が閾値以下の場合、画像を表示</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageVisible = true;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 光センサの値が閾値より大きい場合、画像を非表示</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageVisible = false;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sound_flag = false;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;}</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;if (imageVisible) {</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;// 画像が表示状態の場合、画像を表示</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;//imageMode(CENTER);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;//image(image, width / 2, height / 2);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;x += dir_x * speed;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;y += dir_y * speed;</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;if ( ( x &lt; 0 ) || ( x &gt; width - image.width ) ) {</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;dir_x = - dir_x;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;}</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;if ( ( y &lt; 0 ) || ( y &gt; height - image.height ) ) {</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;dir_y = - dir_y;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;}</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;image( image, x, y );</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i &lt; kira.length; i++) {</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kira[i].display();</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kira[i].move();</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//効果音流すーーーーーーー</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//sound.trigger();</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (sound_flag==false){ </li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;player.play(0);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sound_flag=true;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;}</li>
+        <li style="background-color:#EEF;">}</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">void stop() {</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;player.close();</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;minim.stop();</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;super.stop();</li>
+        <li style="background-color:#EEF;">}</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">class Kirakira {</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;float delta = TWO_PI / 100;</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;float x = random(width);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;float y = random(height);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;float hue_fill = random(180,250);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;float hue_stroke = random(180,250);</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;float R;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;float R_start = random(10, 30);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;float R_height = random(1.2, 1.6);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;float R_theta = random(TWO_PI);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;float R_theta_delta = random(0.03, 0.08);</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;float y_spd = random(1, 3);</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;Kirakira() {</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;}</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;void display() {</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;fill(hue_fill, 50, 100, 80);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;stroke(hue_stroke, 100, 100, 80);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;pushMatrix();</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;translate(x, y);</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;beginShape();</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;for (float t = 0; t &lt; TWO_PI; t += delta) {</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vertex(R* pow(cos(t), 3), R * R_height * pow(sin(t), 3));</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;endShape(CLOSE);</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;popMatrix();</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;R = R_start * abs(sin(R_theta)) ;</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;R_theta += R_theta_delta;</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;}</li>
+        <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;void move() {</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;y -= y_spd;</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;if (y &lt; -R * R_height) {</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y = height + R * R_height;</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;}</li>
+        <li style="background-color:#EFF;">}</li>
+        </ol></code>
+
+
+
+</body>
+</html>
