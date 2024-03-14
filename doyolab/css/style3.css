@@ -22,7 +22,7 @@ logotohome img{
 
 /* ========== common ========== */
 html, body {
-	font-size: 16px;
+	font-size: 17px;
 	font-family: sans-serif;
 	color: #393939;
     margin-left: 15px;
@@ -58,16 +58,26 @@ h2{
     background: #f4f4f4;
     display: inline-block;
 }
+
 h3{
-    margin-left: 2em;
+  margin-left: 2em;
 }
+
 div{
     margin-top: 1em;
     margin-left: 3em;
 }
 p{
-    margin-left: 3em;
+    margin-left: 1em;
     color: #393939;
+    line-height: 1;
+}
+
+.p2{
+    margin-left: 0.3em;
+    color: #474747;
+    line-height: 2;
+    font-size: 20px;
 }
 span.blackback{
     text-indent: 3em;
@@ -154,4 +164,92 @@ table {
 
 .underline03 {
   background: linear-gradient(transparent 80%, #f5ff00 20%);
+}
+
+
+
+
+
+.slash {
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 0;
+}
+
+.slash::before,
+.slash::after {
+  content: "";
+  width: 25px;
+  height: 1px;
+  background-color: #000;
+  margin: 0px 4px 4px;
+}
+
+.slash::before {
+  transform: rotate(45deg);
+}
+
+.slash::after {
+  transform: rotate(-45deg);
+}
+
+
+
+
+
+ul, ol {
+  padding: 0;
+}
+
+ul li {
+  position: relative;
+  list-style-type: none!important;/*ポチ消す*/
+  padding: 0.3em 0.3em 0.3em 0.3em;
+  margin-bottom: 10px;
+  width: fit-content;
+  line-height: 2;
+  background: #d4d3d3;
+  vertical-align: middle;
+  color: #393939;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 15px 0px 0px 15px;/*左側の角丸く*/
+}
+
+ul li:before{ 
+  display:inline-block; 
+  vertical-align: middle;
+  /*以下白丸つくる*/
+  content:'';
+  width:1em;
+  height: 1em;
+  background: #fff;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+
+
+.box {
+  margin: 20px auto;
+}
+.box-ttl {
+  background-color: #a9a9a9;
+  color: #fff;
+  padding: 0.3em 20px;
+  width: fit-content;
+  border-radius: 10px 10px 0 0;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+.box-txt {
+  padding: 10px 20px 15px 20px;
+  border: 2px solid #a9a9a9;
+  margin-top: 0;
+  margin-left: 0;
+  width: fit-content;
 }

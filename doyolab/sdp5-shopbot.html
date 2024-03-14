@@ -11,8 +11,117 @@
 <body>
     <h1>ShopBotの手順</h1>
     <div>
-        <h2></h2><br>
-           
+        <h2>VCarve Pro</h2><br>
+           shopbot を動かす前に ”VCarve Pro” というアプリで、dxf ファイルを shopbot 用の sbp ファイルに置き換える作業をしていきます。<br>
+           まず、板の大きさを設定し、dxfファイルをインポートします。<br>
+           <br>
+           <img src="./images/importvectors.png" width="30%">　
+           <img src="./images/opendxf.png" width="30%"><br>
+           <br>
+           <br>
+           Move Selected Objects を選択して設計図を適切な場所に移動させます。<br>
+           <br>
+           <img src="./images/MoveSelectedObjects.png" width="25%">　
+           <img src="./images/Moveselection .png" width="25%"><br>
+
+
+           <div class="box">
+                <h3 class="box-ttl">POINT</h3>
+
+                <div class="box-txt">
+                    <p2><strong>・Type of Move は <span class="underline02">Absolute</span> にすること</strong></p2><br>
+                    　　→Absolute にしないと Anchor を動かすことができません。<br>
+                    <br>
+                    <p2><strong>・Anchor を左下に設定</strong></p2><br>
+                    　　→状況によって変わりますが、左下を原点に位置を決めた方がわかりやすいです。<br>
+                    <br>
+                    <p2><strong>・X.Y Position は余裕を持たせる</strong></p2><br>
+                    　　→板の端ギリギリに配置すると刃がネジに当たってしまうので、3センチ程度隙間を空ける必要があります。<br>
+            
+                </div>
+            </div>
+            <br>
+            <br>
+            次に、挿入した図がすべて繋がっているかを確認します。<br>
+            join を選択後 Selected vectors の Open が０になっていることを確認。<br>
+            <br>
+            <img src="./images/join.png" width="25%">　
+            <img src="./images/joinvectors.png" width="25%"><br>
+            <br>
+            ここが０になっていないと後でエラーが出ます。<br>
+            <br>
+            <br>
+            図が上手く配置できたら、加工の仕方や刃の種類を選択する段階へと進みます。<br>
+            右上の Toolpaths を開き、加工の種類を選びます。今回は、切り抜く加工を選択しました。<br>
+            <br>
+            <img src="./images/toolpaths.png" width="25%"><br>
+            <br>
+            完全に切り抜くことなくポケットのようにしたい場合は、右隣の機能を選択します。<br>
+            <br>
+            <br>
+            <img src="./images/toolpaths2.png" width="25%"><br>
+            <br>
+            ここでは、刃の種類と刃を走らせる位置の選択、タブの追加を行います。<br>
+            
+            <div class="box">
+                <h3 class="box-ttl">POINT</h3>
+
+                <div class="box-txt">
+                    
+                    刃を走らせる位置は、<span class="underline02">線の外側か内側かで加工後の大きさにズレが生じる</span>ので注意が必要です。<br>
+                    <br>
+                    例えば、下のようなはめ込み部分のあるものを作りたいとき、<br>
+                    <br>
+                    <img src="./images/sbinout.png" width="400" height="300"><br>
+                    <br>
+                    突起がある方は<span class="underline02">線の外側</span>、穴が開いている方は<span class="underline02">線の内側</span>を切る必要があります。<br>
+                    <br>
+                    <img src="./images/sboutside.png" width="400" height="200">
+                    <img src="./images/sbinside.png" width="400" height="200"><br>
+                
+                </div>
+            </div>
+            <br>
+            タブは、すべて切り終わったときに切ったパーツが吹っ飛ばないようにつけます。<br>
+            <br>
+            <img src="./images/tab.png" width="30%"><br>
+            左右に大体２か所くらい<br>
+            <br>
+            <br>
+            以上の設定が終わったら名前をつけて Calculate を押します。<br>
+            <br>
+            <img src="./images/toolpaths2.png" width="25%"><br>
+            （Cutting Depths の Cut Depth は板厚25mmよりちょっとだけ深めにしました）<br>
+            <br>
+            <br>
+            Calculateを押すとWARNINGが出てきますが無視してOKを押します。<br>
+            多分、板の厚さより刃の深さが大きくなってるよって言われてます。<br>
+            <br>
+            <img src="./images/WARNING.png" width="30%"><br>
+            <br>
+            <br>
+            OKを押してこの画面に変わったら再生ボタンを押し、タブ以外の部分がしっかり切り取れているかを確認。<br>
+            <br>
+            <img src="./images/Run.png" width="25%">
+            <img src="./images/Run2.png" width="25%"><br>
+            <br>
+            問題がなければこのまま保存作業に移ります。<br>
+            保存したい図にチェックを入れ、Save Toolpathを押します。<br>
+            <br>
+            <img src="./images/savetoolpath.png" width="25%">
+            <img src="./images/savetoolpath2.png" width="25%"><br>
+            <br>
+            適当なファイル名をつけsbpファイルとして保存！<br>
+            <br>
+            <img src="./images/sbpsave.png" width="40%">
+            <br>
+            
+
+
+
+
+            <br>
+
 
 
     </div>
