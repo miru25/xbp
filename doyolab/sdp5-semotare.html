@@ -12,13 +12,18 @@
     <h1>設計とアセンブル</h1>
     <div>
         
-        <h2>設計</h2><br>
+        <h2>設計</h2><br>           
+            背もたれとなる上部分のパーツをFusion360で設計していきます。<br>
+            ＜手書きイメージ＞<br>
+            <img src="./images/tegaki.png" width="375" height="500"><br>
+            <br>
+            <br>
             <span class="slash">背もたれパーツ設計の流れ</span>
             <br>
             <span class="underline02"><strong>１．パラメータを作成</strong></span><br>
-            このパラメータという機能は、複数人で設計を行う場合や、高さや幅など何度も使用する決まった寸法がある場合に非常に便利な機能です。<br>
+            　このパラメータという機能は、複数人で設計を行う場合や、高さや幅など何度も使用する決まった寸法がある場合に非常に便利な機能です。<br>
             <br>
-            パラメータは、修正タブの「パラメータを変更」から設定することができます。<br>
+            パラメータは、修正タブの<strong>「パラメータを変更」</strong>から設定することができます。<br>
             <img src="./images/para1.png" width="600" height="450"><br>
             <br>
             右上の＋マークからパラメータを追加します。<br>
@@ -48,11 +53,13 @@
 
 
             <span class="underline02"><strong>２．補助線を引く</strong></span><br>
+            　設計をする際に、図の中心や端に補助線を引くことでスケッチがしやすくなり、ミスを減らすことができます。<br>
+            特に、対称的な図を描くときや、位置やサイズに正確性が求められるものを作るときには、補助線が重要な役割を果たします。<br>
             <br>
-            スケッチを開始し、線分を選択したら補助線を引きたいところに線を引きます。<br>
+            まず、<strong>スケッチを開始→線分</strong>を選択し、適当に線を引きます。<br>
             （線を引いたらスケッチを終了せず、右クリック→OKを押す）<br>
             <br>
-            引いた線を選択した上で、右クリック→「標準/コンストラクション」を選択します。<br>
+            引いた線を選択した上で、右クリック→<strong>「標準/コンストラクション」</strong>を選択します。<br>
             <img src="images/hojosen1.png" width="600" height="450"><br>
             <br>
             先ほど引いた線が<span class="underline02"> 実線から点線 </span>に変わりました。<br>
@@ -60,9 +67,91 @@
             <br>
             次に、作業中線が動かないように固定します。（線を選択して右クリック）<br>
             <img src="./images/hojosenkotei.png" width="600" height="450"><br>
-            <br>
-            （更新途中...）
 
+
+            <br>
+            <br>
+            <br>
+
+
+            <span class="underline02"><strong>３．スケッチ寸法</strong></span><br>
+            　補助線を複数本引くときや、図形を描くときなどに、その位置やサイズを調整するため使うのがスケッチ寸法です。<br>
+            <br>
+            作成タブにある<strong>「スケッチ寸法」</strong>を選択したら、位置を調整したい線を選び、適当な値（パラメータなど）を入力します。<br>
+            <img src="./images/hojosensunnpou.png" width="600" height="450"><br>
+            <br>
+            <div class="box">
+                <h3 class="box-ttl">POINT</h3>
+                <div class="box-txt">
+
+                   このとき、二つの線とスケッチ寸法は<span class="underline02">同じスケッチ内</span>で作業をしないと画像のようなエラーが出てしまいます。<br>
+                   <br>
+                   <img src="./images/hojosensunnpou2.png" width="500" height="375"><br>
+                   
+                </div>
+            </div>
+
+
+            <br>
+            <br>
+            <br>
+
+
+            <span class="underline02"><strong>４．ミラー</strong></span><br>
+            　補助線などを中心に、左右対称な図を描きたいときに使うのがミラーという機能です。<br>
+            <br>
+            まず、左右対称にしたい線の片方を描きます。<br>
+            <img src="./images/mirrormae.png" width="600" height="450"><br>
+            <br>
+            次に作成タブから<strong>「ミラー」</strong>を選択します。<br>
+            <img src="./images/mirror.png" width="600" height="450"><br>
+            <br>
+            オブジェクトに先ほど引いた線を選択し、ミラー中心線に補助線を選択します。<br>
+            OKを押すと、補助線を中心とした左右対称の線（赤矢印）が引かれます。<br>
+            <img src="./images/mirrorgo.png" width="600" height="450"><br>
+            （２本の線を選択し、スケッチ寸法を使えば幅も調整できます。）<br>
+            <br>
+            ミラーで描いた線の間を繋げば、突部分の完成！<br>
+            <img src="./images/aida.png" width="600" height="450"><br>
+
+            <br>
+            <br>
+            <br>
+
+            <span class="underline02"><strong>５．角に穴をつける</strong></span><br>
+            <br>
+            Shop Botは円柱状の刃なので、加工されるときに角が丸くなってしまいます。<br>
+            <img src="./images/kado-rei.png" width="500" height="375"><br>
+            <br>
+            このままだとスリットやはめ込み部分が上手く嚙み合わなくなってしまうので、<br>
+            ↓のように角の部分に小さな穴をつける作業を行います。<br>
+            <img src="./images/ana-kai.png" width="600" height="450"><br>
+
+            <br>
+            <br>
+            <br>
+
+            <span class="underline02"><strong>６．スケッチ終了</strong></span><br>
+            <br>
+            スリット、突、角の穴を描きすべてのスケッチが終了しました！<br>
+            <img src="./images/sketchfin.png" width="600" height="450"><br>
+
+            <br>
+            <br>
+            <br>
+
+            <span class="underline02"><strong>７．押し出し</strong></span><br>
+            <br>
+            スケッチが終了したら、次は押し出しの工程に入ります。<br>
+            作成タブの<strong>「押し出し」</strong>を選択し、立体にしたい部分を選択します。<br>
+            <img src="./images/osidasi.png" width="500" height="375">
+            <img src="./images/osidasisenntaku.png" width="500" height="375"><br>
+            <br>
+            押し出したい長さ（今回は板厚）を入力したら立体になります。<br>
+            <img src="./images/osidasigo.png" width="600" height="450"><br>
+            <br>
+            これで背もたれパーツの完成です！<br>
+            後は、このパーツをCAD上で量産し、スリット部分などがしっかり嚙み合うのかを確認して、出力作業を行っていきます。<br>
         <br>
 
         <h2>アセンブル</h2><br>
