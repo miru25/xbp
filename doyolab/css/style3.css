@@ -254,3 +254,44 @@ ul li:before{
   margin-left: 0;
   width: fit-content;
 }
+
+.btn a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	width: 300px;
+	height: 60px;
+	color: #333;
+	font-size: 18px;
+	font-weight: 700;
+	text-decoration: none;
+	transition: 0.3s;
+  left: 0;
+}
+
+.btn a:hover {
+	color: #f2f2f2;
+}
+
+.btn04 a {
+	background-color: #94b4ba;
+	border: 1px solid transparent;
+	border-radius: 35px;
+}
+
+.btn04 a::before {
+	content: '';
+	position: absolute;
+	top: -5px;
+  left: -5px;
+	width: 100%;
+	height: 100%;
+  background-color: transparent;
+	border: 1px solid #333;
+	border-radius: 35px;
+}
+
+.btn04 a:hover {
+	background-color: #4a5e61;
+}
