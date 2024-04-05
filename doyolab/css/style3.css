@@ -295,3 +295,71 @@ ul li:before{
 .btn04 a:hover {
 	background-color: #4a5e61;
 }
+
+
+
+
+
+.circle_btn02 {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 200px; /* ボタンの最大幅 */
+  padding: 1em 0.5em;
+  color: initial; /* 文字色 */
+  transition: 0.3s ease-in-out;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.circle_btn02::before, .circle_btn02::after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 50%;
+}
+
+.circle_btn02::before {
+  width: 0.5em;
+  height: 0.5em;
+  left: 1em;
+  border-top: solid 2px #fff; /* 矢印の色 */
+  border-right: solid 2px #fff; /* 矢印の色 */
+  z-index: 2;
+  transform: translateY(-50%) rotate(45deg);
+  transition: all 0.3s;
+}
+
+.circle_btn02::after {
+  left: 0;
+  background: #0489a18e; /* 背景色 */
+  z-index: 1;
+  width: 3em;
+  height: 3em;
+  border-radius: 3em;
+  transform: translateY(-50%);
+  transition: all 0.5s;
+}
+
+.circle_btn02 span {
+  position: relative;
+  transition: all 0.3s;
+  z-index: 3;
+}
+
+/* マウスオーバーした際のデザイン */
+.circle_btn02:hover span {
+  color: #fff; /* 文字色 */
+}
+
+.circle_btn02:hover:before {
+  left: 2rem;
+}
+
+.circle_btn02:hover:after {
+  right: 0;
+  width: 100%;
+  background: #5b9ba7;
+}
