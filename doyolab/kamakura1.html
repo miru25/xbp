@@ -9,12 +9,42 @@
     
 </head>
 <body>
-    <h1>第２回</h1>
+    <h1>第２回（2024.04.19）</h1>
     <div>
         <h2>テキストマイニング</h2><br>
-        <img src="./images/txmtry.png" width="600" height="450"><br>
-        <img src="./images/newplot.png" width="600" height="450"><br>
-        <img src="./images/newplot2.png" width="600" height="450"><br>
+
+        <div class="box">
+            <h3 class="box-ttl">テキストマイニング</h3>
+            <div class="box-txt">
+                大量のテキストデータから、有益な情報を取り出すことを総称して<strong>テキストマイニング</strong>と呼ぶ。<br>
+                自然言語解析の手法を使って、<span class="underline02">文章を単語（名詞、動詞、形容詞等）に分割し、それらの出現頻度や相関関係を分析する</span>ことで有益な情報を抽出する。<br>
+                テキストデータは、<span class="underline02">「定性データ」</span>の代表的なもので、この「定性データ」を整理・抽出し統計的に<span class="underline02">「見える化」</span>することで付加価値の高い情報を収集することを目的としている。<br>
+                <br>
+                参考サイト＞＞<a href="https://www.traina.ai/solution/textmining/about.html">トレイナ</a>
+                <a href="https://www.mieruka-engine.com/media/textmining?gad_source=1&gclid=CjwKCAjw26KxBhBDEiwAu6KXtz1BRWTe_rKczPykTnUvaHbqQi-k7Di6nHYXBvBASkUembXKMY3BehoCY_YQAvD_BwE#">見える化エンジン</a>
+            </div>
+        </div>
+        <br>
+        今回は、インタビュー本番に向けての練習として、班でインタビューを行いテキストマイニングを行った。<br>
+        除外する単語に、「何」「感じ」を含め分析を行ったところ、画像のような結果となった。<br>
+        <br>
+        <img src="./images/txmtry.png" width="400" height="300">
+        <img src="./images/newplot.png" width="400" height="300">
+        <img src="./images/newplot2.png" width="400" height="300"><br>
+        <br>
+        共起ネットワークの見方として、<br>
+        <strong>「円が大きいほど出現頻度が高い」「線で結ばれている単語は同じタイミングで使われることが多い」</strong>という特徴がある。<br>
+        <br>
+        <br>
+        <span class="slash">うまくいかなかったところ</span>
+        ・「体調」「崩す」は「犬」と一番関連している単語であるが、離れてしまっている。<br>
+        ・単純に単語が少なすぎる。<br>
+        <br>
+        <span class="slash">改善点</span>
+        ・インタビューをする際、話し手の間では同じ話題について話しているとわかっていても、<span class="underline02">実際にその単語を発していなければテキストマイニングではそれが判断できない</span>ため、集計が上手くできなくなる。<br>
+        →質問や話を広げるときは、単語を繰り返すようにすることが重要
+        <br>
+        
 
         <br>
 
