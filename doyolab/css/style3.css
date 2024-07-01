@@ -255,6 +255,28 @@ ul li:before{
   width: fit-content;
 }
 
+.box02 {
+  margin: 20px auto;
+}
+.box02-ttl {
+  background-color: #adadad;
+  color: #fff;
+  padding: 0.3em 20px;
+  width: fit-content;
+  border-radius: 10px 10px 0 0;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+.box02-txt {
+  padding: 10px 20px 15px 20px;
+  border: 2px solid #adadad;
+  border-radius: 0 10px 0 10px;
+  margin-top: 0;
+  margin-left: 0;
+  width: fit-content;
+}
+
 .btn a {
 	display: flex;
 	justify-content: center;
