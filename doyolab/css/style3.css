@@ -60,7 +60,7 @@ h2{
 }
 
 h3{
-  margin-left: 2em;
+  margin-left: 1em;
 }
 
 div{
@@ -277,6 +277,28 @@ ul li:before{
   width: fit-content;
 }
 
+/*タイトル付き（ラベルボックス）*/
+.box5-2{
+	margin:20px; /* ボックスの余白 */
+	background-color:#fff; /* ボックス背景色 */
+	padding:1.5em; /* ボックス内側余白 */
+  width: 35em;
+	position:relative; /* 配置(ここを基準に) */
+	border: 2px solid #666;/* ボックスの線 (太さ　種類　色)*/
+}
+.box5-2 .box-title {
+	background-color:#fff; /* タイトル背景色 */
+	font-size: 18px;/* タイトル文字の大きさ */
+	font-weight:800;
+	color: #666; /* タイトル文字色 */
+	padding: 0 5px;/*タイトルの余白*/
+  width: fit-content;
+	line-height: 1;/*タイトルの行の高さ*/
+	position:absolute;	/* 配置(ここを動かす) */
+	top: -25px; /*上から（-5px）移動*/
+	left: -40px; /*左から(20px)移動*/
+}
+
 .btn a {
 	display: flex;
 	justify-content: center;
@@ -386,3 +408,4 @@ ul li:before{
   width: 100%;
   background: #5b9ba7;
 }
+
