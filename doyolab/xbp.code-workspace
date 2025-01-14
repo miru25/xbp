@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../OneDrive/デスクトップ/myWeb"
+		},
+		{
+			"path": "../../../doyolab-kamakura/xbp_text_mining-main/xbp_text_mining-main"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "xbp"
+	}
+}
